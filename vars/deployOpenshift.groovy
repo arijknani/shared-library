@@ -8,9 +8,9 @@ def call(Map config = [:]) {
     } else {
         echo "Deployment ${config.app_name} does not exist, deploying app..."
         sh "oc new-app --image=quay.io/${config.quay_repo}/${config.image_name} --name=${config.app_name}"
-        sh "oc set env --from=secret/app-secrets deploy/${config.app_name}"
-        sh "oc set env --from=configmap/app-configmap deploy/${config.app_name}"
+        //sh "oc set env --from=secret/app-secrets deploy/${config.app_name}"
+        //sh "oc set env --from=configmap/app-configmap deploy/${config.app_name}"
         sh "oc expose svc/${config.app_name}"
-        sh "oc set triggers deploy/${config.app_name} --from-image=${config.app_name}:latest -c ${config.app_name}"
+        //sh "oc set triggers deploy/${config.app_name} --from-image=${config.app_name}:latest -c ${config.app_name}"
     }
 }
